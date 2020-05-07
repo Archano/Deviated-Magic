@@ -11,6 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -20,11 +21,16 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import ru.koshibari.deviatedmagic.base.BlockContainerBase;
 import ru.koshibari.deviatedmagic.base.EntityIndestructableItem;
 import ru.koshibari.deviatedmagic.blocks.machines.infuser.TileEntityInfuser;
 import ru.koshibari.deviatedmagic.init.ModBlocks;
+import ru.koshibari.deviatedmagic.util.Helper;
+
+import javax.annotation.Nullable;
 
 public class RitualStonePedestal extends BlockContainerBase {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -111,19 +117,13 @@ public class RitualStonePedestal extends BlockContainerBase {
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
-        if (stack.hasDisplayName()) {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
-            /*if (tileEntity instanceof TileEntityRitualStone) {
-                ((TileEntityRitualStone) tileEntity).setCustomName(stack.getDisplayName());
-            }*/
-        }
     }
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         if (!keepInventory) {
-            TileEntityInfuser tileentity = (TileEntityInfuser) worldIn.getTileEntity(pos);
-            InventoryHelper.dropInventoryItems(worldIn, pos, tileentity);
+            TileEntityPedestal tileentity = (TileEntityPedestal) worldIn.getTileEntity(pos);
+            ((TileEntityPedestal)tileentity).dropItems(tileentity.getItemHandler(), tileentity);
             worldIn.updateComparatorOutputLevel(pos, this);
             super.breakBlock(worldIn, pos, state);
         }
@@ -167,14 +167,14 @@ public class RitualStonePedestal extends BlockContainerBase {
         return BlockRenderLayer.CUTOUT;
     }
 
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state) {
+        return new TileEntityPedestal();
+    }
+
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (hand.equals(EnumHand.MAIN_HAND)) {
-            ItemStack res = playerIn.getHeldItem(hand).copy();
-            res.setCount(1);
-            playerIn.getHeldItem(hand).shrink(1);
-            worldIn.spawnEntity(new EntityIndestructableItem(worldIn, pos.getX(), pos.getY() + 0.875D, pos.getZ(), res));
-        }
-        return false;
+        return Helper.putStackOnTile(playerIn, hand, pos, 0, true);
     }
 }

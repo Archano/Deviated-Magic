@@ -1,8 +1,11 @@
 package ru.koshibari.deviatedmagic.util.handlers;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -12,6 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import ru.koshibari.deviatedmagic.DeviatedMagic;
 import ru.koshibari.deviatedmagic.init.ModBlocks;
 import ru.koshibari.deviatedmagic.init.ModItems;
+import ru.koshibari.deviatedmagic.util.Reference;
 import ru.koshibari.deviatedmagic.world.DMWolrdGenCustomStructure;
 import ru.koshibari.deviatedmagic.world.DMWorldGen;
 
@@ -49,6 +53,7 @@ public class RegistryHandler {
     public static void initRegistries() {
         NetworkRegistry.INSTANCE.registerGuiHandler(DeviatedMagic.instance, new GuiHandler());
         RecipeHandler.registerRecipes();
+        RenderHandler.registerEntityRenders();
     }
 
     public static void postInitRegistries() {
