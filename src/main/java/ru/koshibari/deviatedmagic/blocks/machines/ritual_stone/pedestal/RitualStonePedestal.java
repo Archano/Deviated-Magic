@@ -167,6 +167,10 @@ public class RitualStonePedestal extends BlockContainerBase {
         return BlockRenderLayer.CUTOUT;
     }
 
+    public EnumFacing getFacing(){
+        return getBlockState().getBaseState().getValue(FACING);
+    }
+
     @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
