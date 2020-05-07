@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " R ",
+        "#C#",
+        "CSC"
+    ],
+    "key": {
+        "#": {
+            "item": "deviatedmagic:coagulated_blood"
+        },
+        "C": {
+            "item": "deviatedmagic:corruption_blend"
+        },
+        "R": {
+            "item": "minecraft:red_mushroom"
+        },
+        "S": {
+            "item": "minecraft:stone",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "deviatedmagic:upgrade_matter_1",
+        "count": 1
+    }
+}

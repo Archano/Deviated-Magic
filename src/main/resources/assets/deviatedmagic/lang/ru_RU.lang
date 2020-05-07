@@ -1,0 +1,11 @@
+itemGroup.deviatedmagic=Deviated Magic
+item.soulgem.name=Камень Душ
+item.soulgem_zombie.name=Камень Душ (Зомби)
+item.soulgem_enderman.name=Камень Душ (Эндермэн)
+item.soulextractor.name=Извлекатель Душ
+item.flask.name=Бутыль
+item.corruption_blend.name=Смесь Девиации
+item.infected_blood_drop.name=Инфецированная Кровь
+tile.soulgem_ore.name=Руда Камня Душ
+tile.infuser_off.name=Инфьюзер
+container.infuser=Infuser

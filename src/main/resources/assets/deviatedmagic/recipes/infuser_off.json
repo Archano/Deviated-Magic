@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CPC",
+    "FEF",
+    "SGS"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "P": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "S": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "G": {
+      "item": "deviatedmagic:soulgem"
+    }
+  },
+  "result": {
+    "item": "deviatedmagic:infuser_off",
+    "count": 1
+  }
+}

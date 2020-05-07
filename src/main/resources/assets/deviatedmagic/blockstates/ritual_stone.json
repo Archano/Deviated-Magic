@@ -1,0 +1,29 @@
+{
+  "variants":
+  {
+    "facing=up":
+    {
+      "model": "deviatedmagic:ritual_stone"
+    },
+
+    "facing=south":
+    {
+      "model": "deviatedmagic:ritual_stone"
+    },
+
+    "facing=east":
+    {
+      "model": "deviatedmagic:ritual_stone","y":270
+    },
+
+    "facing=west":
+    {
+      "model": "deviatedmagic:ritual_stone","y":90
+    },
+
+    "facing=north":
+    {
+      "model": "deviatedmagic:ritual_stone","y":180
+    }
+  }
+}

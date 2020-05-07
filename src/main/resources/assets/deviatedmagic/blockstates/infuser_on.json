@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "deviatedmagic:infuser_on" },
+    "facing=south": { "model": "deviatedmagic:infuser_on", "y": 180 },
+    "facing=west":  { "model": "deviatedmagic:infuser_on", "y": 270 },
+    "facing=east":  { "model": "deviatedmagic:infuser_on", "y": 90 }
+  }
+}

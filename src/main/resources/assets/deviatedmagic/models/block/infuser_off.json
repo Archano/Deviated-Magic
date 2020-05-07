@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "deviatedmagic:blocks/infuser/infuser_front_off",
+    "down": "deviatedmagic:blocks/infuser/infuser_top",
+    "up": "deviatedmagic:blocks/infuser/infuser_top",
+    "east": "deviatedmagic:blocks/infuser/infuser_side",
+    "west": "deviatedmagic:blocks/infuser/infuser_side",
+    "north": "deviatedmagic:blocks/infuser/infuser_front_off",
+    "south": "deviatedmagic:blocks/infuser/infuser_side"
+  }
+}
