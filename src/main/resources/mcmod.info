@@ -2,8 +2,8 @@
 {
   "modid": "deviatedmagic",
   "name": "Deviated Magic",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
+  "description": "Mod about deviated magic.",
+  "version": "1.0.0",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",

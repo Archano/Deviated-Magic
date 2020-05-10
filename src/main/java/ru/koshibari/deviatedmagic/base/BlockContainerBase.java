@@ -1,5 +1,10 @@
 package ru.koshibari.deviatedmagic.base;
 
+import java.util.Arrays;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,10 +16,6 @@ import ru.koshibari.deviatedmagic.DeviatedMagic;
 import ru.koshibari.deviatedmagic.init.ModBlocks;
 import ru.koshibari.deviatedmagic.init.ModItems;
 import ru.koshibari.deviatedmagic.util.handlers.ConfigHandler;
-
-import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.Random;
 
 public class BlockContainerBase extends BlockContainer {
     public BlockContainerBase(String name, Material materialIn) {

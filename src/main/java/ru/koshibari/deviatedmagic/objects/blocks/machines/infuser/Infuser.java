@@ -1,4 +1,4 @@
-package ru.koshibari.deviatedmagic.blocks.machines.infuser;
+package ru.koshibari.deviatedmagic.objects.blocks.machines.infuser;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;

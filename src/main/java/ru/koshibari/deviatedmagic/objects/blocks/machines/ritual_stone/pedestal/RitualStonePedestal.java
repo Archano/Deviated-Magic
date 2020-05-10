@@ -1,4 +1,6 @@
-package ru.koshibari.deviatedmagic.blocks.machines.ritual_stone;
+package ru.koshibari.deviatedmagic.objects.blocks.machines.ritual_stone.pedestal;
+
+import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -8,26 +10,26 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.koshibari.deviatedmagic.base.BlockContainerBase;
-import ru.koshibari.deviatedmagic.blocks.machines.infuser.TileEntityInfuser;
-import ru.koshibari.deviatedmagic.init.ModBlocks;
+import ru.koshibari.deviatedmagic.util.Helper;
 
-public class RitualStone extends BlockContainerBase {
+public class RitualStonePedestal extends BlockContainerBase {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    public static final AxisAlignedBB RITUAL_STONE = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 1.5D, 0.9375D);
+    public static final AxisAlignedBB RITUAL_STONE_PEDESTAL = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 2D, 0.9375D);
 
-    public static boolean keepInventory;
-
-    public RitualStone(String name, Material material) {
+    public RitualStonePedestal(String name, Material material) {
         super(name, material);
         setHardness(3.0f);
         setResistance(15.0f);
@@ -51,9 +53,10 @@ public class RitualStone extends BlockContainerBase {
         return false;
     }
 
+
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return RITUAL_STONE;
+        return RITUAL_STONE_PEDESTAL;
     }
 
     @Override
@@ -84,11 +87,7 @@ public class RitualStone extends BlockContainerBase {
     }
 
     public static void setState(boolean active, World worldIn, BlockPos pos) {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
-
-        keepInventory = false;
-
         if (tileentity != null) {
             tileentity.validate();
             worldIn.setTileEntity(pos, tileentity);
@@ -103,22 +102,14 @@ public class RitualStone extends BlockContainerBase {
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
-        if (stack.hasDisplayName()) {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
-            /*if (tileEntity instanceof TileEntityRitualStone) {
-                ((TileEntityRitualStone) tileEntity).setCustomName(stack.getDisplayName());
-            }*/
-        }
     }
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        if (!keepInventory) {
-            TileEntityInfuser tileentity = (TileEntityInfuser) worldIn.getTileEntity(pos);
-            InventoryHelper.dropInventoryItems(worldIn, pos, tileentity);
-            worldIn.updateComparatorOutputLevel(pos, this);
-            super.breakBlock(worldIn, pos, state);
-        }
+    	TileEntityPedestal tileentity = (TileEntityPedestal) worldIn.getTileEntity(pos);
+        ((TileEntityPedestal)tileentity).dropItems(tileentity.getItemHandler(), tileentity);
+        worldIn.updateComparatorOutputLevel(pos, this);
+        super.breakBlock(worldIn, pos, state);
     }
 
     @Override
@@ -141,16 +132,6 @@ public class RitualStone extends BlockContainerBase {
     }
 
     @Override
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
-    }
-
-    @Override
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
-        return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
-    }
-
-    @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
         return super.canPlaceBlockAt(worldIn, pos) ? this.canBlockStay(worldIn, pos) : false;
     }
@@ -167,5 +148,20 @@ public class RitualStone extends BlockContainerBase {
     @Override
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;
+    }
+
+    public EnumFacing getFacing(){
+        return getBlockState().getBaseState().getValue(FACING);
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state) {
+        return new TileEntityPedestal();
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        return Helper.putStackOnTile(playerIn, hand, pos, 0, true);
     }
 }

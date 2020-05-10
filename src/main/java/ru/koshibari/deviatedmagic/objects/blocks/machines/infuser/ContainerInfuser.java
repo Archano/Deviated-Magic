@@ -1,4 +1,4 @@
-package ru.koshibari.deviatedmagic.blocks.machines.infuser;
+package ru.koshibari.deviatedmagic.objects.blocks.machines.infuser;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -7,8 +7,8 @@ import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import ru.koshibari.deviatedmagic.blocks.machines.infuser.slots.SlotInfuserFuel;
-import ru.koshibari.deviatedmagic.blocks.machines.infuser.slots.SlotInfuserOutput;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.infuser.slots.SlotInfuserFuel;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.infuser.slots.SlotInfuserOutput;
 
 public class ContainerInfuser extends Container {
     private final IInventory tileInfuser;

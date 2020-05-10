@@ -1,11 +1,8 @@
 package ru.koshibari.deviatedmagic.util.handlers;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -13,9 +10,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import ru.koshibari.deviatedmagic.DeviatedMagic;
+import ru.koshibari.deviatedmagic.base.ItemBase;
 import ru.koshibari.deviatedmagic.init.ModBlocks;
 import ru.koshibari.deviatedmagic.init.ModItems;
-import ru.koshibari.deviatedmagic.util.Reference;
 import ru.koshibari.deviatedmagic.world.DMWolrdGenCustomStructure;
 import ru.koshibari.deviatedmagic.world.DMWorldGen;
 
@@ -35,7 +32,11 @@ public class RegistryHandler {
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event) {
         for (Item item : ModItems.ITEMS) {
-            DeviatedMagic.proxy.registerItemRenderer(item, 0, "inventory");
+        	if(item.getHasSubtypes()) {
+        		ItemBase.registerModelsForVariants(item);
+        	} else {
+        		DeviatedMagic.proxy.registerItemRenderer(item, 0, "inventory");
+        	}
         }
 
         for (Block block : ModBlocks.BLOCKS) {
@@ -48,6 +49,7 @@ public class RegistryHandler {
         GameRegistry.registerWorldGenerator(new DMWolrdGenCustomStructure(), 1);
         ConfigHandler.registerConfig(event);
         EventHandler.registerEvents();
+        EnumHandler.addEnums();
     }
 
     public static void initRegistries() {

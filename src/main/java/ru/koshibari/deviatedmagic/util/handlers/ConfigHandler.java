@@ -1,7 +1,5 @@
 package ru.koshibari.deviatedmagic.util.handlers;
 
-import it.unimi.dsi.fastutil.ints.Int2IntAVLTreeMap;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import ru.koshibari.deviatedmagic.DeviatedMagic;

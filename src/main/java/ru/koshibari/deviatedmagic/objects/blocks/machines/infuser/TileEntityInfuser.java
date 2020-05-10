@@ -1,4 +1,4 @@
-package ru.koshibari.deviatedmagic.blocks.machines.infuser;
+package ru.koshibari.deviatedmagic.objects.blocks.machines.infuser;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -196,7 +196,7 @@ public class TileEntityInfuser extends TileEntityLockable implements ITickable, 
         }
     }
 
-    public static int getCookTime() {
+    public int getCookTime() {
         return 100;
     }
 
@@ -204,7 +204,7 @@ public class TileEntityInfuser extends TileEntityLockable implements ITickable, 
         if (this.infuserItemStacks.get(1).isEmpty() || this.infuserItemStacks.get(2).isEmpty()) {
             return false;
         } else {
-            ItemStack st = InfuserRecipes.instance().getCookingResult(this.infuserItemStacks.get(1).getItem(), this.infuserItemStacks.get(2).getItem());
+            ItemStack st = InfuserRecipes.instance().getCookingResult(this.infuserItemStacks.get(1), this.infuserItemStacks.get(2));
             if (st == ItemStack.EMPTY) {
                 return false;
             } else {
@@ -227,7 +227,7 @@ public class TileEntityInfuser extends TileEntityLockable implements ITickable, 
         if (this.canSmelt()) {
             ItemStack mat1 = this.infuserItemStacks.get(1);
             ItemStack mat2 = this.infuserItemStacks.get(2);
-            ItemStack result = InfuserRecipes.instance().getCookingResult(mat1.getItem(), mat2.getItem());
+            ItemStack result = InfuserRecipes.instance().getCookingResult(mat1, mat2);
             ItemStack resultSlot = this.infuserItemStacks.get(3);
 
             if (resultSlot.isEmpty()) {
@@ -351,7 +351,8 @@ public class TileEntityInfuser extends TileEntityLockable implements ITickable, 
     net.minecraftforge.items.IItemHandler handlerBottom = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.DOWN);
     net.minecraftforge.items.IItemHandler handlerSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.WEST);
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     @javax.annotation.Nullable
     public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @javax.annotation.Nullable net.minecraft.util.EnumFacing facing)
     {

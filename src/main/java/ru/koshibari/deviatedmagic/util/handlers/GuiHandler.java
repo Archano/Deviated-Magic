@@ -4,9 +4,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import ru.koshibari.deviatedmagic.blocks.machines.infuser.ContainerInfuser;
-import ru.koshibari.deviatedmagic.blocks.machines.infuser.GuiInfuser;
-import ru.koshibari.deviatedmagic.blocks.machines.infuser.TileEntityInfuser;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.infuser.ContainerInfuser;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.infuser.GuiInfuser;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.infuser.TileEntityInfuser;
 
 import javax.annotation.Nullable;
 

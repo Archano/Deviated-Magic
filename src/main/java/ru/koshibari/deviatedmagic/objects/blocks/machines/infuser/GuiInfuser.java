@@ -1,4 +1,4 @@
-package ru.koshibari.deviatedmagic.blocks.machines.infuser;
+package ru.koshibari.deviatedmagic.objects.blocks.machines.infuser;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;

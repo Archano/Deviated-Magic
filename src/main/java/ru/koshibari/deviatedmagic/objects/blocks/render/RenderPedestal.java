@@ -1,4 +1,4 @@
-package ru.koshibari.deviatedmagic.blocks.render;
+package ru.koshibari.deviatedmagic.objects.blocks.render;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -7,9 +7,8 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import org.lwjgl.opengl.GL11;
-import ru.koshibari.deviatedmagic.DeviatedMagic;
-import ru.koshibari.deviatedmagic.blocks.machines.ritual_stone.pedestal.RitualStonePedestal;
-import ru.koshibari.deviatedmagic.blocks.machines.ritual_stone.pedestal.TileEntityPedestal;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.ritual_stone.pedestal.RitualStonePedestal;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.ritual_stone.pedestal.TileEntityPedestal;
 import scala.Int;
 
 public class RenderPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> {
@@ -28,15 +27,22 @@ public class RenderPedestal extends TileEntitySpecialRenderer<TileEntityPedestal
             switch (facing){
                 case EAST: {
                     GL11.glRotatef(270F, 0F, 1F,0F);
+                    break;
                 }
                 case WEST:{
                     GL11.glRotatef(90F, 0F, 1F,0F);
+                    break;
                 }
                 case NORTH : {
                     GL11.glRotatef(180F, 0F, 1F,0F);
+                    break;
                 }
                 case SOUTH: {
                     GL11.glRotatef(180F, 0F, 1F,0F);
+                    break;
+                }
+                default: {
+                	break;
                 }
             }
             RenderManager man = Minecraft.getMinecraft().getRenderManager();

@@ -1,4 +1,4 @@
-package ru.koshibari.deviatedmagic.items.tools;
+package ru.koshibari.deviatedmagic.objects.items.tools;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,12 +18,13 @@ public class SoulExtractor extends ToolSwordBase {
         super(name, material);
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
         InventoryPlayer inv = ((EntityPlayer) attacker).inventory;
 
-        checkAndAdd(ModItems.SOUL_GEM_ZOMBIE, "Zombie", ModItems.SOUL_GEM_ZOMBIE.getMaxDamage(), target, inv);
-        checkAndAdd(ModItems.SOUL_GEM_ENDERMAN, "Enderman", ModItems.SOUL_GEM_ENDERMAN.getMaxDamage(), target, inv);
+        //checkAndAdd(ModItems.SOUL_GEM_ZOMBIE, "Zombie", ModItems.SOUL_GEM_ZOMBIE.getMaxDamage(), target, inv);
+        //checkAndAdd(ModItems.SOUL_GEM_ENDERMAN, "Enderman", ModItems.SOUL_GEM_ENDERMAN.getMaxDamage(), target, inv);
 
         return false;
     }

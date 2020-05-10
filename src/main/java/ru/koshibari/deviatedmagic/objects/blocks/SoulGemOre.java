@@ -1,4 +1,4 @@
-package ru.koshibari.deviatedmagic.blocks;
+package ru.koshibari.deviatedmagic.objects.blocks;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

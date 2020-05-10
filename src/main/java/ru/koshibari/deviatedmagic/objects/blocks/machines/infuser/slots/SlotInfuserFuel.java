@@ -1,9 +1,9 @@
-package ru.koshibari.deviatedmagic.blocks.machines.infuser.slots;
+package ru.koshibari.deviatedmagic.objects.blocks.machines.infuser.slots;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import ru.koshibari.deviatedmagic.blocks.machines.infuser.TileEntityInfuser;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.infuser.TileEntityInfuser;
 
 public class SlotInfuserFuel extends Slot {
     public SlotInfuserFuel(IInventory infuserInventory, int index, int x, int y) {

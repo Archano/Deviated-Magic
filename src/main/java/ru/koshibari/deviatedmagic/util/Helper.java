@@ -6,8 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import ru.koshibari.deviatedmagic.DeviatedMagic;
-import ru.koshibari.deviatedmagic.blocks.machines.ritual_stone.pedestal.TileEntityPedestal;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.ritual_stone.pedestal.TileEntityPedestal;
 
 public class Helper {
     public static boolean putStackOnTile(EntityPlayer player, EnumHand hand, BlockPos pos, int slot, boolean sound) {

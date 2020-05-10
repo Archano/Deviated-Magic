@@ -2,9 +2,8 @@ package ru.koshibari.deviatedmagic.util.handlers;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import ru.koshibari.deviatedmagic.blocks.machines.infuser.TileEntityInfuser;
-import ru.koshibari.deviatedmagic.blocks.machines.ritual_stone.TileEntityRitualStone;
-import ru.koshibari.deviatedmagic.blocks.machines.ritual_stone.pedestal.TileEntityPedestal;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.infuser.TileEntityInfuser;
+import ru.koshibari.deviatedmagic.objects.blocks.machines.ritual_stone.pedestal.TileEntityPedestal;
 import ru.koshibari.deviatedmagic.util.Reference;
 
 public class TileEntityHandler {

@@ -13,6 +13,6 @@ public class DMCreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack getTabIconItem() {
-        return new ItemStack(ModItems.SOUL_GEM_ENDERMAN);
+        return new ItemStack(ModItems.SOUL_EXTRACTOR);
     }
 }

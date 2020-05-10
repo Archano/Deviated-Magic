@@ -1,4 +1,4 @@
-package ru.koshibari.deviatedmagic.blocks.machines.ritual_stone.pedestal;
+package ru.koshibari.deviatedmagic.objects.blocks.machines.ritual_stone.pedestal;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.nbt.NBTTagCompound;
@@ -31,7 +31,7 @@ public class TileEntityPedestal extends TileEntity {
         return this.items;
     }
 
-    public static void dropItems(IItemHandlerModifiable inventory, TileEntity tileEntity){
+    public void dropItems(IItemHandlerModifiable inventory, TileEntity tileEntity){
         tileEntity.getWorld().spawnEntity(new EntityItem(tileEntity.getWorld(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), inventory.extractItem(0, 1, false)));
     }
 }

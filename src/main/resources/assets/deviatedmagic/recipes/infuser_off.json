@@ -22,7 +22,8 @@
       "item": "minecraft:prismarine_shard"
     },
     "G": {
-      "item": "deviatedmagic:soulgem"
+      "item": "deviatedmagic:soulgem",
+      "data": 0
     }
   },
   "result": {

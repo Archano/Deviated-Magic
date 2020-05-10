@@ -1,4 +1,4 @@
-package ru.koshibari.deviatedmagic.blocks.machines.infuser.slots;
+package ru.koshibari.deviatedmagic.objects.blocks.machines.infuser.slots;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -6,12 +6,8 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class SlotInfuserOutput extends Slot {
-    private final EntityPlayer player;
-    private int removeCount;
-
     public SlotInfuserOutput(EntityPlayer player, IInventory infuserInventory, int index, int x, int y) {
         super(infuserInventory, index, x, y);
-        this.player = player;
     }
 
     @Override
@@ -25,7 +21,7 @@ public class SlotInfuserOutput extends Slot {
     {
         if(this.getHasStack())
         {
-            this.removeCount += Math.min(amount, this.getStack().getCount());
+            Math.min(amount, this.getStack().getCount());
         }
         return super.decrStackSize(amount);
     }
@@ -41,7 +37,6 @@ public class SlotInfuserOutput extends Slot {
     @Override
     protected void onCrafting(ItemStack stack, int amount)
     {
-        this.removeCount += amount;
     }
 
 }
