@@ -33,10 +33,7 @@ public class RenderPedestal extends TileEntitySpecialRenderer<TileEntityPedestal
                     GL11.glRotatef(90F, 0F, 1F,0F);
                     break;
                 }
-                case NORTH : {
-                    GL11.glRotatef(180F, 0F, 1F,0F);
-                    break;
-                }
+                case NORTH :
                 case SOUTH: {
                     GL11.glRotatef(180F, 0F, 1F,0F);
                     break;

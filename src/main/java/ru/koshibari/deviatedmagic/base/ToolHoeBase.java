@@ -30,7 +30,7 @@ public class ToolHoeBase extends ItemBase {
 	protected Item.ToolMaterial toolMaterial;
 
 	public ToolHoeBase(String name, ToolMaterial material) {
-		super(name, DeviatedMagic.dmCreativeTab);
+		super(name);
 		this.toolMaterial = material;
 		this.maxStackSize = 1;
 		this.setMaxDamage(material.getMaxUses());

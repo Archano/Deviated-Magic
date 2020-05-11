@@ -22,7 +22,7 @@ public class ToolSwordBase extends ItemBase {
 	private final ToolMaterial material;
 
 	public ToolSwordBase(String name, ToolMaterial material) {
-		super(name, DeviatedMagic.dmCreativeTab);
+		super(name);
 		this.material = material;
 		this.maxStackSize = 1;
 		this.setMaxDamage(material.getMaxUses());

@@ -16,13 +16,13 @@ import ru.koshibari.deviatedmagic.objects.items.tools.SoulExtractor;
 public class ModItems {
     public static final List<Item> ITEMS = new ArrayList<Item>();
 
-    public static final ItemBase SOUL_GEM = new SoulGem("soulgem");
-    public static final ItemBase FLASK = new ItemBase("flask", DeviatedMagic.dmCreativeTab);
-    public static final ItemBase CORRUPTION_BLEND = new ItemBase("corruption_blend", DeviatedMagic.dmCreativeTab);
-    public static final ItemBase COAGULATED_BLOOD = new ItemBase("coagulated_blood", DeviatedMagic.dmCreativeTab);
-    public static final ItemBase UPGRADE_MATTER_TIER = new ItemBase("upgrade_matter", DeviatedMagic.dmCreativeTab);
-    public static final ItemBase PLATE = new ItemPlate("plate");
-    public static final ItemBase HAMMER = new Hammer("hammer");
+    public static final Item SOUL_GEM = new SoulGem("soulgem");
+    public static final Item FLASK = new ItemBase("flask");
+    public static final Item CORRUPTION_BLEND = new ItemBase("corruption_blend");
+    public static final Item COAGULATED_BLOOD = new ItemBase("coagulated_blood");
+    public static final Item UPGRADE_MATTER = new ItemBase("upgrade_matter");
+    public static final Item PLATE = new ItemPlate("plate");
+    public static final Item HAMMER = new Hammer("hammer");
 
     public static final ToolSwordBase SOUL_EXTRACTOR = new SoulExtractor("soulextractor", ModMaterials.TOOL_BLOOD);
     public static final ToolPickaxeBase BLOODY_PICKAXE = new ToolPickaxeBase("bloody_pickaxe", ModMaterials.TOOL_BLOOD);

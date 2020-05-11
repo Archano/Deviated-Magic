@@ -1,6 +1,7 @@
 package ru.koshibari.deviatedmagic.world.generators;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
@@ -10,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import ru.koshibari.deviatedmagic.DeviatedMagic;
 import ru.koshibari.deviatedmagic.util.interfaces.IStructure;
 import ru.koshibari.deviatedmagic.util.Reference;
 import ru.koshibari.deviatedmagic.util.handlers.LootTableHandler;
@@ -17,10 +19,21 @@ import ru.koshibari.deviatedmagic.util.handlers.LootTableHandler;
 import java.util.Random;
 
 public class DMWorldGenStructure extends WorldGenerator implements IStructure {
-    public static String structureName;
+    public String structureName;
+    public boolean genInv;
+    public BlockPos invPos;
+    public ResourceLocation lootTable;
+
+    public DMWorldGenStructure(String name, boolean genInventory, BlockPos pos, ResourceLocation lootTable) {
+        this.structureName = name;
+        this.genInv = genInventory;
+        this.invPos = pos;
+        this.lootTable = lootTable;
+    }
 
     public DMWorldGenStructure(String name) {
-        structureName = name;
+        this.structureName = name;
+        this.genInv = false;
     }
 
     @Override
@@ -39,10 +52,12 @@ public class DMWorldGenStructure extends WorldGenerator implements IStructure {
             IBlockState state = world.getBlockState(pos);
             world.notifyBlockUpdate(pos, state, state, 3);
             template.addBlocksToWorld(world, pos, placementSettings);
-            BlockPos pos1 = pos.add(3, 2, 2);
-            TileEntity te = world.getTileEntity(pos1);
-            ((TileEntityChest)te).setLootTable(LootTableHandler.LOOT1, rand.nextInt());
-            ((TileEntityChest)te).fillWithLoot(null);
+            if (this.genInv){
+                BlockPos pos1 = new BlockPos(pos.getX() + this.invPos.getX(), pos.getY() + this.invPos.getY(), pos.getZ() + this.invPos.getZ());
+                TileEntity te = world.getTileEntity(pos1);
+                ((TileEntityChest)te).setLootTable(this.lootTable, rand.nextInt());
+                ((TileEntityChest)te).fillWithLoot(null);
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ public class ConfigHandler {
 
     //Structure Spawns
     public static boolean LOOT1_SPAWN = true;
+    public static int LOOT1_CHANCE = 100;
 
     //Othere
     public static String[] EXCLUDE = new String[]{"infuser_on"};
@@ -30,6 +31,7 @@ public class ConfigHandler {
         category = "Spawning Structures";
         config.addCustomCategoryComment(category, "Is structure spawns");
         LOOT1_SPAWN = config.getBoolean("Spawn LOOT1", category, true, "Is LOOT1 Spawns");
+        LOOT1_CHANCE = config.getInt("Chance LOOT1", category, 100, 1, 200, "Chance of Spawning LOOT1");
 
         category = "Othere";
         config.addCustomCategoryComment(category, "Othere configs");

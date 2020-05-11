@@ -27,7 +27,7 @@ public class ItemToolBase extends ItemBase {
     protected Item.ToolMaterial toolMaterial;
 	
 	public ItemToolBase(String name, float attackDamageIn, float attackSpeedIn, Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
-		super(name, DeviatedMagic.dmCreativeTab);
+		super(name);
 		this.toolMaterial = materialIn;
 		this.efficiency = 4.0F;
         this.effectiveBlocks = effectiveBlocksIn;

@@ -11,14 +11,15 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import ru.koshibari.deviatedmagic.util.handlers.ConfigHandler;
+import ru.koshibari.deviatedmagic.util.handlers.LootTableHandler;
 import ru.koshibari.deviatedmagic.world.generators.DMWorldGenStructure;
 import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class DMWolrdGenCustomStructure implements IWorldGenerator {
-    public static final DMWorldGenStructure LOOT1 = new DMWorldGenStructure("loot1");
+public class DMWorldGenCustomStructure implements IWorldGenerator {
+    public static final DMWorldGenStructure LOOT1 = new DMWorldGenStructure("loot1", true, new BlockPos(3, 2, 2), LootTableHandler.LOOT1);
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
@@ -27,7 +28,7 @@ public class DMWolrdGenCustomStructure implements IWorldGenerator {
 
             }
             case 1: {
-                if (ConfigHandler.LOOT1_SPAWN) generateStructure(LOOT1, world, random, chunkX, chunkZ, 150, Blocks.GRASS, Biomes.PLAINS.getClass());
+                generateStructure(ConfigHandler.LOOT1_SPAWN, LOOT1, world, random, chunkX, chunkZ, ConfigHandler.LOOT1_CHANCE, Blocks.GRASS, Biomes.PLAINS.getClass());
             }
             case -1: {
 
@@ -35,20 +36,21 @@ public class DMWolrdGenCustomStructure implements IWorldGenerator {
         }
     }
 
-    private void generateStructure(WorldGenerator generator, World world, Random random, int chunkX, int chunkZ, int chance, Block topBlock, Class<?>... classes) {
-        @SuppressWarnings("unchecked")
-		ArrayList<Class<?>> classesList = new ArrayList<Class<?>>(Arrays.asList(classes));
+    private void generateStructure(boolean spawn, WorldGenerator generator, World world, Random random, int chunkX, int chunkZ, int chance, Block topBlock, Class<?>... classes) {
+        if (spawn){
+            @SuppressWarnings("unchecked")
+            ArrayList<Class<?>> classesList = new ArrayList<Class<?>>(Arrays.asList(classes));
 
-        int x = (chunkX * 16) + random.nextInt(15);
-        int z = (chunkZ * 16) + random.nextInt(15);
-        int y = calculateHeight(world, x, z, topBlock);
-        BlockPos pos = new BlockPos(x, y, z);
-
-        Class<?> biome = world.provider.getBiomeForCoords(pos).getClass();
-        if (world.getWorldType() != WorldType.FLAT) {
-            if (classesList.contains(biome)) {
-                if (random.nextInt(chance) == 0) {
-                    generator.generate(world, random, pos);
+            int x = (chunkX * 16) + random.nextInt(15);
+            int z = (chunkZ * 16) + random.nextInt(15);
+            int y = calculateHeight(world, x, z, topBlock);
+            BlockPos pos = new BlockPos(x, y, z);
+            Class<?> biome = world.provider.getBiomeForCoords(pos).getClass();
+            if (world.getWorldType() != WorldType.FLAT) {
+                if (classesList.contains(biome)) {
+                    if (random.nextInt(chance) == 0) {
+                        generator.generate(world, random, pos);
+                    }
                 }
             }
         }
@@ -58,7 +60,7 @@ public class DMWolrdGenCustomStructure implements IWorldGenerator {
         int y = world.getHeight();
         boolean foundGround = false;
 
-        while (!foundGround & y-- >= 0) {
+        while (!foundGround & y-->= 0) {
             Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
             foundGround = block == topBlock;
         }

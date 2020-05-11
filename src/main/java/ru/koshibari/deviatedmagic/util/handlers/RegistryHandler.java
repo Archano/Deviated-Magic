@@ -2,6 +2,8 @@ package ru.koshibari.deviatedmagic.util.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -13,7 +15,8 @@ import ru.koshibari.deviatedmagic.DeviatedMagic;
 import ru.koshibari.deviatedmagic.base.ItemBase;
 import ru.koshibari.deviatedmagic.init.ModBlocks;
 import ru.koshibari.deviatedmagic.init.ModItems;
-import ru.koshibari.deviatedmagic.world.DMWolrdGenCustomStructure;
+import ru.koshibari.deviatedmagic.util.Reference;
+import ru.koshibari.deviatedmagic.world.DMWorldGenCustomStructure;
 import ru.koshibari.deviatedmagic.world.DMWorldGen;
 
 @Mod.EventBusSubscriber
@@ -33,7 +36,11 @@ public class RegistryHandler {
     public static void onModelRegister(ModelRegistryEvent event) {
         for (Item item : ModItems.ITEMS) {
         	if(item.getHasSubtypes()) {
-        		ItemBase.registerModelsForVariants(item);
+                NonNullList<ItemStack> list = NonNullList.create();
+                item.getSubItems(Reference.CT_COMMON, list);
+                for(ItemStack item1 : list){
+                    DeviatedMagic.proxy.registerItemRenderer(item1.getItem(), item1.getItemDamage(), "inventory", ((ItemBase)item1.getItem()).getMetaName(item1));
+                }
         	} else {
         		DeviatedMagic.proxy.registerItemRenderer(item, 0, "inventory");
         	}
@@ -46,7 +53,7 @@ public class RegistryHandler {
 
     public static void preInitRegistries(FMLPreInitializationEvent event) {
         GameRegistry.registerWorldGenerator(new DMWorldGen(), 0);
-        GameRegistry.registerWorldGenerator(new DMWolrdGenCustomStructure(), 1);
+        GameRegistry.registerWorldGenerator(new DMWorldGenCustomStructure(), 0);
         ConfigHandler.registerConfig(event);
         EventHandler.registerEvents();
         EnumHandler.addEnums();
